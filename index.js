@@ -9,7 +9,7 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-mongoose.connect("mongodb://localhost:27017/registrationFormDB");
+mongoose.connect("mongodb://0.0.0.0/registrationFormDB");
 
 const registerSchema = new mongoose.Schema(
     {
