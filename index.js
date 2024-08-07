@@ -9,7 +9,7 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 const username = process.env.MONGODB_USERNAME;
-const password = process.env.MONGODB_PASSWORD;
+const password = encodeURIComponent(process.env.MONGODB_PASSWORD);
 
 // mongoose.connect("mongodb://0.0.0.0/registrationFormDB");
 mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.ax12e.mongodb.net/RegistrationFormApp`);
