@@ -8,8 +8,11 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
+const username = process.env.MONGODB_USERNAME;
+const password = process.env.MONGODB_PASSWORD;
 
-mongoose.connect("mongodb://0.0.0.0/registrationFormDB");
+// mongoose.connect("mongodb://0.0.0.0/registrationFormDB");
+mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.ax12e.mongodb.net/RegistrationFormApp`);
 
 const registerSchema = new mongoose.Schema(
     {
@@ -33,7 +36,7 @@ app.post("/register", async(req,res)=>{
     try{
         const {name,email,password} = req.body;
 
-        const existUser = new Registration.findOne({email:email});
+        const existUser = await Registration.findOne({email:email});
         if(!existUser){
             const registrationData = new Registration({
                 name,
